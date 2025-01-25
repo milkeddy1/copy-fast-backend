@@ -15,8 +15,8 @@ datasource db {
 
 // this is what prisma need to generate the table
 enum ContentType {
-  TEXT
-  FILE
+  text
+  file
 }
 
 // 可能是文字也可能是檔案
@@ -25,6 +25,15 @@ model Content {
   type      ContentType
   text      String?
   file      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// 使用者, 現在只會有一個, 因為只給我用
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique  // has to be unique to find the user
+  password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
