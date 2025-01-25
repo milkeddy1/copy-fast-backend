@@ -13,12 +13,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
+// this is what prisma need to generate the table
+enum ContentType {
+  TEXT
+  FILE
+}
 
 // 可能是文字也可能是檔案
 model Content {
   id        Int      @id @default(autoincrement())
-  type      String
+  type      ContentType
   text      String?
   file      String?
   createdAt DateTime @default(now())
